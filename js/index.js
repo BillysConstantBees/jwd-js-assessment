@@ -40,10 +40,20 @@ window.addEventListener('DOMContentLoaded', () => {
       a: 3,
     },
     {
-      q: 'What is the capital of Australia',
+      q: 'What is the capital of Australia?',
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: 'What am I thinking of?',
+      o: ['Polar Bear', 'KFC', 'Battlestar Galactica', 'Butter Chicken'],
+      a: 3,
+    },
+    {
+      q: 'Jeff?',
+      o: ['jeff', 'Jeff-jeff', 'Jeff', 'jEfF'],
+      a: 2,
+    }
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -76,10 +86,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
+          liElement.style.backgroundColor = 'Lightblue'
         }
 
         if (radioElement.checked) {
-          // code for task 1 goes here
+          // code for task 1 goes here: Calculate the score as 
+          // the total of the number of correct answers
+          if (quizItem.a == i ) {
+            score++;
+          };
+          document.getElementById('score').innerHTML = `Your score is ${score} out of 5.`;
         }
       }
     });
@@ -87,4 +103,34 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // call the displayQuiz function
   displayQuiz();
+
+  document.getElementById('btnSubmit').addEventListener('click', calculateScore);
+
+  //setInterval(qtimer, 1000);
+
+  //function qtimer() {
+    //let d = new Date();
+    //document.getElementById("time").innerHTML= `${d}!`;
+    //d.getHours() + ":" +
+   // d.getMinutes() + ":" +
+  //  d.getSeconds();
+ // }
+
+
+ //document.getElementById("strtbtn").addEventListener('click', cntDown)
+
+
+ const remTime = 60;
+ let timeLeft = remTime
+ const countdowner = document.getElementById("time");
+ const upCountDown = () => {
+   countdowner.innerHTML = `${timeLeft}!`;
+   timeLeft--;
+   if (timeLeft < 0) {
+    calculateScore();
+    timeLeft = '0'
+   }
+ }
+
 });
+
